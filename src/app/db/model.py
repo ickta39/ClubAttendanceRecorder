@@ -5,7 +5,7 @@ class User(SQLModel, table=True):
     id: int = Field(primary_key=True, default=None)
     email: str = Field(unique=True, nullable=False)
     password: str = Field(nullable=False)
-    admin: bool = Field(default=False)
+    admin: bool = Field(default=False, nullable=False)
 
 class Profile(SQLModel, table=True):
     id: int = Field(primary_key=True)
