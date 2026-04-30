@@ -25,6 +25,9 @@
             <p>ログインして出席を記録してください。</p>
 
             <form id="login-form">
+                <div id="wrong-error" class="warning" style="display: none;">
+                    <p><strong>エラー：メールアドレスもしくはパスワードが間違っています。</strong></p>
+                </div>
                 <input name="host" type="url" placeholder="ホストサーバー" required>
                 <input name="email" type="email" placeholder="メールアドレス" required>
                 <input name="password" type="password" placeholder="パスワード" required>
@@ -39,6 +42,7 @@
 
     <script>
         const LOGIN_FORM = document.getElementById("login-form")
+        const WRONG_ERROR = document.getElementById("wrong-error")
 
         addEventListener("DOMContentLoaded", (e) => {
             LOGIN_FORM.host.value = localStorage.getItem("host-server")
