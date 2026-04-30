@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-
 class ProfileResponse(BaseModel):
-    id: str
+    id: int
     name: str
+    admin: bool
