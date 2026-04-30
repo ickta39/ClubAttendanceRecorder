@@ -1,1 +1,2 @@
 # ClubAttendanceRecorder
+部活動の出席を記録するシステムです

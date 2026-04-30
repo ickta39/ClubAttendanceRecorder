@@ -1,0 +1,7 @@
+python-dotenv
+
+uvicorn
+fastapi[all]
+itsdangerous
+PyJWT
+sqlmodel

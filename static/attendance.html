@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        #log-area {
+            border: 1px black solid;
+            border-radius: 1rem;
+            padding: 0.5rem;
+        }
+
+        #log-area ul {
+            list-style: none;
+            height: 6rem;
+            overflow-y: auto;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><span id="clubname">部活動</span> 出席システム</h1>
+        <div id="profile">
+            <a href="./login.html">
+                <button class="button">ログイン</button>
+            </a>
+
+            <p style="display: none;"><span id="profile-name">USER</span> さん</p>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <h2>出席</h2>
+            <p>IDを入力して、出席を記録してください。</p>
+
+            <form id="attendance-form">
+                <div id="user-notfound" class="warning" style="display: none;">
+                    <p><strong>エラー：ユーザーが存在しません。</strong></p>
+                </div>
+                <input name="id" type="number" placeholder="ID" required>
+                <input name="date" type="date" required>
+
+                <input type="submit" value="登録" class="button">
+            </form>
+
+            <div id="log-area">
+                <h3>入力履歴</h3>
+                <hr>
+                <ul id="log">
+                </ul>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>Copyright (C) 2026 Ichikawa Technical High School</p>
+    </footer>
+
+    <script>
+        const LOGIN_FORM = document.getElementById("attendance-form")
+        const LOG = document.getElementById("log")
+        const USER_ERROR = document.getElementById("user-notfound")
+
+        addEventListener("DOMContentLoaded", (e) => {
+            LOGIN_FORM.date.value = new Date().toLocaleDateString("sv-SE")
+        })
+
+        LOGIN_FORM.addEventListener("submit", (e) => {
+            event.preventDefault()
+
+            if (!checkValidUser(e.target.id.value)) {
+                USER_ERROR.style.display = "unset"
+                return
+            }
+            else USER_ERROR.style.display = "none"
+
+            var li = document.createElement("li")
+            li.innerText = `${e.target.date.value}: ${e.target.id.value}`
+
+            LOG.appendChild(li)
+        })
+
+        function checkValidUser(id) {
+            return id != 123
+        }
+    </script>
+</body>
+</html>

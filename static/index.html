@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1><span id="clubname">部活動</span> 出席システム</h1>
+        <div id="profile">
+            <a href="./login.html">
+                <button class="button">ログイン</button>
+            </a>
+
+            <p style="display: none;"><span id="profile-name">USER</span> さん</p>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="notify">
+                <h3>お知らせ</h3>
+                <p>お知らせはありません。通常通り活動してください。</p>
+            </div>
+            <div>
+                <svg id="barcode"></svg>
+
+                <p id="name">お名前</p>
+                <code id="alt-code">123456789</code>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>Copyright (C) 2026 Ichikawa Technical High School</p>
+    </footer>
+
+    <script>
+        JsBarcode("#barcode", "123456789", {
+            format: "CODE128",
+            lineColor: "#000",
+            width: 2,
+            displayValue: false
+        })
+    </script>
+</body>
+</html>

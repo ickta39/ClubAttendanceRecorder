@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><span id="clubname">部活動</span> 出席システム</h1>
+        <div id="profile">
+            <a href="./login.html">
+                <button class="button">ログイン</button>
+            </a>
+
+            <p style="display: none;"><span id="profile-name">USER</span> さん</p>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <h2>管理者パネル</h2>
+
+            <div class="container">
+                <h3>お知らせを登録</h3>
+                <form>
+                    <textarea name="notify-content" autocomplete="off">
+                    </textarea>
+                    <input type="submit" value="登録">
+                </form>
+            </div>
+
+            <a href="attendance.html">出席を登録</a>
+        </div>
+    </main>
+    <footer>
+        <p>Copyright (C) 2026 Ichikawa Technical High School</p>
+    </footer>
+
+    <script>
+        const LOGIN_FORM = document.getElementById("login-form")
+
+        addEventListener("DOMContentLoaded", (e) => {
+            LOGIN_FORM.host = localStorage.getItem("host-server")
+        })
+
+        LOGIN_FORM.addEventListener("submit", (e) => {
+            localStorage.setItem("host-server", event.target.host)
+        })
+    </script>
+</body>
+</html>
