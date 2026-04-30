@@ -16,11 +16,11 @@
     <header>
         <h1><span id="clubname">部活動</span> 出席システム</h1>
         <div id="profile">
-            <a href="./login.html">
+            <a href="./login.html" id="login-button">
                 <button class="button">ログイン</button>
             </a>
 
-            <p style="display: none;"><span id="profile-name">USER</span> さん</p>
+            <p style="display: none;" id="profile-name-area"><span id="profile-name">USER</span> さん</p>
         </div>
     </header>
     <main>
@@ -41,12 +41,19 @@
         <p>Copyright (C) 2026 Ichikawa Technical High School</p>
     </footer>
 
+    <script src="./index.js"></script>
     <script>
-        JsBarcode("#barcode", "123456789", {
-            format: "CODE128",
-            lineColor: "#000",
-            width: 2,
-            displayValue: false
+        const NAME = document.getElementById("name")
+        const ALTCODE = document.getElementById("alt-code")
+
+        window.addEventListener("profileLoaded", (event) => {
+            NAME.innerText = `${event.detail.name}`
+            ALTCODE.innerText = `${event.detail.id}`
+            JsBarcode("#barcode", `${event.detail.id}`, {
+                lineColor: "#000",
+                width: 2,
+                displayValue: false
+            })
         })
     </script>
 </body>

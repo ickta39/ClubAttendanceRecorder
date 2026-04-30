@@ -48,10 +48,46 @@
             LOGIN_FORM.host.value = localStorage.getItem("host-server")
         })
 
-        LOGIN_FORM.addEventListener("submit", (e) => {
+        LOGIN_FORM.addEventListener("submit", async (e) => {
             e.preventDefault()
-            localStorage.setItem("host-server", event.target.host.value)
+            document.cookie = `host-server=${event.target.host.value}; max-age=${30*24*3600}`
+
+            try {
+                var token = await login(e.target.email.value, e.target.password.value)
+
+                if (token === null) {
+                    WRONG_ERROR.style.display = "unset"
+                    return
+                }
+
+                document.cookie = `token=${token}; max-age=${30*24*3600}`
+
+                location.href="./index.html"
+            }
+            catch {
+                alert("エラーが発生しました。")
+            }
         })
+
+        async function login(email, password) {
+            var URL = `${localStorage.getItem("host-server")}/auth/login`
+            var resp = await fetch(URL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    email: email,
+                    password: password
+                })
+            })
+
+            if (!resp.ok) {
+                return null
+            }
+
+            return (await resp.json()).token
+        }
     </script>
 </body>
 </html>
