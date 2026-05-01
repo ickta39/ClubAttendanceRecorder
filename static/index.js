@@ -1,7 +1,7 @@
 let profile = null;
 const LOGIN_BUTTON = document.getElementById("login-button")
 const USERNAME_ELEMENT = document.getElementById("profile-name")
-const USERNAME_AREA = document.getElementById("profile-name-area")
+const PROFILE_AREA = document.getElementById("profile")
 const LOGOUT_BUTTON = document.getElementById("logout-button")
 const HOST_SERVER = getCookie("host-server");
 
@@ -52,7 +52,7 @@ addEventListener("load", async (e) => {
 
     LOGIN_BUTTON.style.display = "none"
     USERNAME_ELEMENT.innerText = profile.name
-    USERNAME_AREA.style.display = "unset"
+    PROFILE_AREA.style.display = "unset"
 })
 
 LOGOUT_BUTTON.addEventListener("click", (event) => {
