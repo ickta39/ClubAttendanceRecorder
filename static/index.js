@@ -6,10 +6,15 @@ const LOGOUT_BUTTON = document.getElementById("logout-button")
 const HOST_SERVER = getCookie("host-server");
 
 function getCookie(key) {
-    var cookies = document.cookie.split(";")
-    var value = cookies.find(element => element.trim().startsWith(key + "=")).trim()
+    try {
+        var cookies = document.cookie.split(";")
+        var value = cookies.find(element => element.trim().startsWith(key + "=")).trim()
 
-    return value ? value.substring(key.length + 1, value.length) : null
+        return value ? value.substring(key.length + 1, value.length) : null
+    }
+    catch {
+        return null
+    }
 }
 
 async function loadProfile(token) {

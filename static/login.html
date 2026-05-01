@@ -45,10 +45,15 @@
         const WRONG_ERROR = document.getElementById("wrong-error")
 
         function getCookie(key) {
-            var cookies = document.cookie.split(";")
-            var value = cookies.find(element => element.trim().startsWith(key + "=")).trim()
-        
-            return value ? value.substring(key.length + 1, value.length) : null
+            try {
+                var cookies = document.cookie.split(";")
+                var value = cookies.find(element => element.trim().startsWith(key + "=")).trim()
+
+                return value ? value.substring(key.length + 1, value.length) : null
+            }
+            catch {
+                return null
+            }
         }
 
         addEventListener("DOMContentLoaded", (e) => {
