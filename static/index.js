@@ -37,12 +37,15 @@ addEventListener("load", async (e) => {
     try {
         profile = await loadProfile(getCookie("token"))
         if (profile === null) {
+            alert("セッションの有効期限が切れました。再度ログインしてください。")
             location.href = "./login.html"
             return
         }
     }
     catch {
-
+        alert("このシステムを使用するには、ログインをしてください。")
+        location.href = "./login.html"
+        return
     }
 
     window.dispatchEvent(new CustomEvent("profileLoaded", {detail: profile}))
