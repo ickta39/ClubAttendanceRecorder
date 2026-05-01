@@ -82,7 +82,7 @@
         })
 
         async function login(email, password) {
-            var URL = `${localStorage.getItem("host-server")}/auth/login`
+            var URL = `${getCookie("host-server")}/auth/login`
             var resp = await fetch(URL, {
                 method: "POST",
                 headers: {
