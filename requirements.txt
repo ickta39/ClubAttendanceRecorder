@@ -2,6 +2,6 @@ python-dotenv
 
 uvicorn
 fastapi[all]
-itsdangerous
 PyJWT
 sqlmodel
+argon2-cffi

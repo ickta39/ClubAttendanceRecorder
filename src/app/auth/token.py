@@ -30,11 +30,11 @@ def generate_token(user_id: int):
         "user-id": user_id
     }
 
-    return jwt.encode(payload, os.getenv("SESSION_SECRET"), algorithm="HS256")
+    return jwt.encode(payload, os.getenv("TOKEN_SECRET"), algorithm="HS256")
 
 def verify_token(token, session: Session) -> tuple[VerifyResult, dict[str, Any]]:
     try:
-        decoded = jwt.decode(token, os.getenv("SESSION_SECRET"), algorithms=["HS256"])
+        decoded = jwt.decode(token, os.getenv("TOKEN_SECRET"), algorithms=["HS256"])
 
         user = session.get(User, decoded["user-id"])
 

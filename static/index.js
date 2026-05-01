@@ -36,6 +36,7 @@ async function loadProfile(token) {
 addEventListener("load", async (e) => {
     if (!HOST_SERVER) {
         location.href = "./login.html"
+        alert("サーバーが設定されていません")
         return
     }
 
